@@ -4,6 +4,7 @@ import { paddingTop, paddingLeft, paddingBottom, paddingRight } from '../config'
 import useChartContext from '../useChartContext'
 import useTickValues from '../useTickValues'
 import useXDomain from '../useXDomain'
+import Bar from './bar'
 
 const Histogram = () => {
   const { data, dimensions, percentiles } = useChartContext()
@@ -12,7 +13,6 @@ const Histogram = () => {
   const xDomain = useXDomain()
   const xTickValues = useTickValues()
   const yDomain = d3.extent(data.clusters, item => item.houses) as [number, number]
-
   const yScale = d3.scaleLinear()
     .domain([0, yDomain[1] + yDomain[1] / 5])
     .range([0, height - paddingTop - paddingBottom])
@@ -44,7 +44,7 @@ const Histogram = () => {
     }
     fill = percentiles[pos - 1].color
     return (
-      <rect
+      <Bar
         key={i}
         x={xScale(d.min)}
         width={xScale(d.max) - xScale(d.min)}
