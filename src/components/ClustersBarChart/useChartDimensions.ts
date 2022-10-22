@@ -16,7 +16,7 @@ const useChartDimensions = ({ ref }: Props) => {
     height: 0
   })
   useEffect(() => {
-    if (ref.current != null) {
+    if (ref.current !== null) {
       const rect = ref.current.getBoundingClientRect()
       setDimensions({
         width: rect.width,
@@ -35,7 +35,7 @@ const useChartDimensions = ({ ref }: Props) => {
       })
       resizeObserver.observe(ref.current)
       return () => {
-        if (ref.current != null) {
+        if (ref.current !== null) {
           resizeObserver.unobserve(ref.current)
         }
       }

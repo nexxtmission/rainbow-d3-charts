@@ -5,6 +5,7 @@ import AxisBottom from './AxisBottom'
 import AxisLeft from './AxisLeft'
 import Prediction from './Prediction'
 import Histogram from './Histogram'
+import { RenderIf } from 'react-rainbow-components'
 
 export interface Cluster {
   min: number
@@ -58,10 +59,12 @@ const ClustersBarChart = (props: ClustersBarChartProps) => {
     <Container style={style} className={className} ref={containerRef}>
       <Svg width={dimensions.width} height={dimensions.height}>
         <context.Provider value={value}>
-          <Histogram />
-          <AxisBottom />
-          <AxisLeft />
-          <Prediction />
+          <RenderIf isTrue={dimensions.width > 0 && dimensions.height > 0}>
+            <Histogram />
+            <AxisBottom />
+            <AxisLeft />
+            <Prediction />
+          </RenderIf>
         </context.Provider>
       </Svg>
     </Container>
